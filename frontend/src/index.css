@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-white font-sans antialiased;
+  }
+}
+
+.react-flow__node {
+  @apply rounded-xl border border-gray-700 bg-gray-800 shadow-xl transition-shadow hover:shadow-2xl hover:border-blue-500/50;
+}
+
+.react-flow__handle {
+  @apply w-3 h-3 bg-blue-500 border-2 border-white;
+}
