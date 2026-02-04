@@ -58,11 +58,10 @@ const NodeConfiguration = ({ node, updateNodeData }) => {
                         <div>
                             <label className="block text-sm font-medium text-gray-400 mb-1">Provider</label>
                             <select
-                                value={node.data.provider || 'openai'}
+                                value={node.data.provider || 'gemini'}
                                 onChange={(e) => handleChange('provider', e.target.value)}
                                 className="w-full bg-gray-700 border border-gray-600 rounded p-2 text-white focus:outline-none focus:border-blue-500"
                             >
-                                <option value="openai">OpenAI</option>
                                 <option value="gemini">Google Gemini</option>
                             </select>
                         </div>
@@ -70,9 +69,9 @@ const NodeConfiguration = ({ node, updateNodeData }) => {
                             <label className="block text-sm font-medium text-gray-400 mb-1">Model</label>
                             <input
                                 type="text"
-                                value={node.data.model || 'gpt-3.5-turbo'}
+                                value={node.data.model || 'gemini-1.5-flash'}
                                 onChange={(e) => handleChange('model', e.target.value)}
-                                placeholder="e.g. gpt-4, gemini-pro"
+                                placeholder="e.g. gemini-1.5-pro"
                                 className="w-full bg-gray-700 border border-gray-600 rounded p-2 text-white focus:outline-none focus:border-blue-500"
                             />
                         </div>

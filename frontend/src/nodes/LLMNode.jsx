@@ -12,10 +12,10 @@ export default memo(({ data, selected }) => {
             </div>
             <div className="p-4 flex flex-col gap-2">
                 <div className="text-xs text-gray-400">
-                    <span className="font-semibold text-gray-300">Model:</span> {data.model || 'GPT-4o'}
+                    <span className="font-semibold text-gray-300">Model:</span> {data.model || 'gemini-1.5-flash'}
                 </div>
                 <div className="text-xs text-gray-400">
-                    <span className="font-semibold text-gray-300">Provider:</span> {data.provider || 'OpenAI'}
+                    <span className="font-semibold text-gray-300">Provider:</span> {data.provider || 'Gemini'}
                 </div>
             </div>
             <Handle type="source" position={Position.Right} className="w-3 h-3 bg-purple-500 border-2 border-gray-800" />
