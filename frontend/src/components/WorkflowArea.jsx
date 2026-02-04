@@ -59,7 +59,7 @@ const WorkflowArea = ({
                 id: getId(),
                 type,
                 position,
-                data: { label: `${type}`, model: 'gpt-3.5-turbo', provider: 'openai', collection: 'knowledge_base' },
+                data: { label: `${type}`, model: 'gemini-1.5-flash', provider: 'gemini', collection: 'knowledge_base' },
             };
 
             setNodes((nds) => nds.concat(newNode));

@@ -18,9 +18,10 @@ const NodeConfiguration = ({ node, updateNodeData }) => {
         formData.append('file', file);
         formData.append('collection_name', node.data.collection || 'knowledge_base');
 
+        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
         setUploadStatus('Uploading...');
         try {
-            const res = await fetch('http://localhost:8000/api/v1/upload/', {
+            const res = await fetch(`${API_BASE_URL}/upload/`, {
                 method: 'POST',
                 body: formData,
             });
