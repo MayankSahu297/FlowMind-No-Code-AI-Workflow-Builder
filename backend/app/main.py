@@ -6,7 +6,11 @@ import os
 # Load environment variables from .env file immediately upon startup
 load_dotenv()
 
-# Initialize the FastAPI application
+key = os.getenv("GEMINI_API_KEY")
+if key:
+    print(f"INFO: GEMINI_API_KEY loaded successfully (starts with {key[:5]}...)")
+else:
+    print("WARNING: GEMINI_API_KEY is not set in the environment!")
 flowmind_app = FastAPI(
     title="FlowMind API", 
     version="1.0.0",
