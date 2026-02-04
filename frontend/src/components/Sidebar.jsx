@@ -39,7 +39,7 @@ const Sidebar = () => {
                     draggable
                 >
                     <Bot size={18} className="text-purple-400" />
-                    <span className="text-sm font-medium">Gemini 1.5 Flash</span>
+                    <span className="text-sm font-medium">Gemini Pro</span>
                 </div>
 
                 <div

@@ -15,6 +15,7 @@ async def generate_text(provider: str, model: str, query: str, context: Optional
     # Ensure Gemini is configured
     api_key = os.getenv("GEMINI_API_KEY")
     if api_key:
+        print(f"DEBUG: Configuring GenAI with key starting with: {api_key[:10]}...")
         genai.configure(api_key=api_key)
     else:
         return "AI Service Error: GEMINI_API_KEY not found in environment."
@@ -36,9 +37,9 @@ async def generate_text(provider: str, model: str, query: str, context: Optional
         
         if provider_name == "gemini":
             # Using Google's generative AI SDK
-            # Recommended model for Free Tier: gemini-1.5-flash
-            # gemini-pro is legacy and often causes 404s in the new SDK
-            target_model = "gemini-1.5-flash" 
+            # 'gemini-1.5-flash' is not available in all regions/keys yet
+            # Falling back to standard 'gemini-pro' which is widely available
+            target_model = "gemini-pro" 
             
             try:
                 print(f"DEBUG: Calling Gemini with model: {target_model}")
@@ -54,7 +55,7 @@ async def generate_text(provider: str, model: str, query: str, context: Optional
                 print(f"CRITICAL: Gemini Request Failed: {str(e)}")
                 # Provide a more helpful message for 404s
                 if "404" in str(e):
-                    return f"AI Service error (404): The model '{target_model}' was not found. Please ensure your API key is valid and has access to the Gemini 1.5 Flash free tier."
+                    return f"AI Service error (404): The model '{target_model}' was not found. Please ensure your API key is valid."
                 raise e
             
         else:
