@@ -11,8 +11,14 @@ chroma_host = os.getenv("CHROMA_HOST")
 chroma_port = os.getenv("CHROMA_PORT")
 
 if chroma_host and chroma_port:
-    logger.info(f"Connecting to ChromaDB at {chroma_host}:{chroma_port}")
-    client = chromadb.HttpClient(host=chroma_host, port=int(chroma_port))
+    try:
+        logger.info(f"Connecting to ChromaDB at {chroma_host}:{chroma_port}")
+        client = chromadb.HttpClient(host=chroma_host, port=int(chroma_port))
+        # Test connection
+        client.heartbeat()
+    except Exception as e:
+        logger.error(f"Failed to connect to remote ChromaDB: {e}. Falling back to local storage.")
+        client = chromadb.PersistentClient(path="./chroma_db")
 else:
     logger.info("Using local embedded ChromaDB")
     client = chromadb.PersistentClient(path="./chroma_db")
