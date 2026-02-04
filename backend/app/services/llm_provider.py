@@ -1,6 +1,10 @@
 import os
 import google.generativeai as genai
 from typing import Optional
+from dotenv import load_dotenv
+
+# Load env vars to ensure API key is available
+load_dotenv()
 
 async def generate_text(provider: str, model: str, query: str, context: Optional[str] = "") -> str:
     """
@@ -32,22 +36,30 @@ async def generate_text(provider: str, model: str, query: str, context: Optional
         
         if provider_name == "gemini":
             # Using Google's generative AI SDK
+            # Recommended model for Free Tier: gemini-1.5-flash
+            # gemini-pro is legacy and often causes 404s in the new SDK
+            target_model = "gemini-1.5-flash" 
+            
             try:
-                print(f"DEBUG: Calling Gemini with model: {model}")
-                ai_model = genai.GenerativeModel(model_name=model)
+                print(f"DEBUG: Calling Gemini with model: {target_model}")
+                # Initialize the model with the latest standards
+                ai_model = genai.GenerativeModel(model_name=target_model)
                 generation = ai_model.generate_content(prompt_template)
-                return generation.text
-            except Exception as e:
-                if "404" in str(e) and model != "gemini-pro":
-                    print(f"DEBUG: {model} failed with 404, falling back to gemini-pro")
-                    ai_model = genai.GenerativeModel(model_name="gemini-pro")
-                    generation = ai_model.generate_content(prompt_template)
+                
+                if generation and generation.text:
                     return generation.text
+                return "AI Error: Received an empty response from Gemini."
+                
+            except Exception as e:
+                print(f"CRITICAL: Gemini Request Failed: {str(e)}")
+                # Provide a more helpful message for 404s
+                if "404" in str(e):
+                    return f"AI Service error (404): The model '{target_model}' was not found. Please ensure your API key is valid and has access to the Gemini 1.5 Flash free tier."
                 raise e
             
         else:
             return f"Developer Note: Configuration error. Only Google Gemini is supported at this time."
             
     except Exception as api_error:
-        # We catch and return the error message so the user sees what went wrong with the API call
+        # We catch and return the error message so the user sees what went wrong
         return f"AI Service Error: {str(api_error)}"

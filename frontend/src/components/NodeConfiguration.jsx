@@ -67,14 +67,15 @@ const NodeConfiguration = ({ node, updateNodeData }) => {
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Model</label>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">Model (Free Tier)</label>
                             <input
                                 type="text"
                                 value={node.data.model || 'gemini-1.5-flash'}
                                 onChange={(e) => handleChange('model', e.target.value)}
-                                placeholder="e.g. gemini-1.5-pro"
+                                placeholder="gemini-1.5-flash"
                                 className="w-full bg-gray-700 border border-gray-600 rounded p-2 text-white focus:outline-none focus:border-blue-500"
                             />
+                            <p className="text-[10px] text-blue-400 mt-1">Recommended: gemini-1.5-flash for free usage.</p>
                         </div>
                     </>
                 )}

@@ -55,11 +55,24 @@ const WorkflowArea = ({
                 y: event.clientY,
             });
 
+            const labels = {
+                queryNode: 'User Query',
+                llmNode: 'Gemini 1.5 Flash',
+                knowledgeNode: 'Knowledge Base',
+                searchNode: 'Web Search',
+                outputNode: 'Output'
+            };
+
             const newNode = {
                 id: getId(),
                 type,
                 position,
-                data: { label: `${type}`, model: 'gemini-1.5-flash', provider: 'gemini', collection: 'knowledge_base' },
+                data: {
+                    label: labels[type] || type,
+                    model: 'gemini-1.5-flash',
+                    provider: 'gemini',
+                    collection: 'knowledge_base'
+                },
             };
 
             setNodes((nds) => nds.concat(newNode));
