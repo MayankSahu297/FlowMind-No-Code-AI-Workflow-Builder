@@ -79,7 +79,7 @@ class WorkflowExecutor:
 
             elif node.type == 'llmNode':
                 # The 'brain' of the workflow. We pack all gathered context here.
-                ai_model = node.data.model or "gemini-1.5-flash"
+                ai_model = node.data.model or "gemini-2.0-flash"
                 ai_provider = node.data.provider or "gemini"
                 
                 all_context = (workflow_state.get('knowledge_context', "") + 

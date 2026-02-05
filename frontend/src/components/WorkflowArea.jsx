@@ -57,7 +57,7 @@ const WorkflowArea = ({
 
             const labels = {
                 queryNode: 'User Query',
-                llmNode: 'Gemini Pro',
+                llmNode: 'Gemini 2.0 (Free)',
                 knowledgeNode: 'Knowledge Base',
                 searchNode: 'Web Search',
                 outputNode: 'Output'
@@ -69,7 +69,7 @@ const WorkflowArea = ({
                 position,
                 data: {
                     label: labels[type] || type,
-                    model: 'gemini-pro',
+                    model: 'gemini-2.0-flash',
                     provider: 'gemini',
                     collection: 'knowledge_base'
                 },

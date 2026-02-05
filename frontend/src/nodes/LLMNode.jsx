@@ -12,7 +12,7 @@ export default memo(({ data, selected }) => {
             </div>
             <div className="p-4 flex flex-col gap-2">
                 <div className="text-xs text-gray-400">
-                    <span className="font-semibold text-gray-300">Model:</span> {data.model || 'gemini-1.5-flash'}
+                    <span className="font-semibold text-gray-300">Model:</span> {data.model || 'gemini-2.0-flash'}
                 </div>
                 <div className="text-xs text-gray-400">
                     <span className="font-semibold text-gray-300">Provider:</span> {data.provider || 'Gemini'}

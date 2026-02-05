@@ -37,9 +37,8 @@ async def generate_text(provider: str, model: str, query: str, context: Optional
         
         if provider_name == "gemini":
             # Using Google's generative AI SDK
-            # 'gemini-1.5-flash' is not available in all regions/keys yet
-            # Falling back to standard 'gemini-pro' which is widely available
-            target_model = "gemini-pro" 
+            # We use the model specified in the workflow node, defaulting to a comprehensive one if needed
+            target_model = model or "gemini-2.0-flash"
             
             try:
                 print(f"DEBUG: Calling Gemini with model: {target_model}")
